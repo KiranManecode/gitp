@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .sidebar{
+        position:fixed;
+        left:0;
+        right:0;
+        height:100%;
+        width:250px;
+        background-color: black;
+        padding-top:70px;
+        color:#fff;
+    }
+    .sidebar ul{
+        list-style-type: none;
+        padding: 0%;
+    }
+
+    .sidebar li{
+        padding:10px;
+        cursor:pointer;
+    }
+    .sidebar li:hover{
+        background-color: #495057;
+    }
+    .sidebar li.active{
+        background-color: #495057;
+    }
+    .sidebar li i {
+        margin-right:8px;
+    }
+    .main-content
+    {
+        
+        margin-left:250px;
+        padding:20px;
+    }
+    .card{
+        margin-bottom: 20px;
+        border:none;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+</style>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <li class="active"><i>Dashboard</i></li>
+            <li><i>Courses</i></li>
+            <li><i>Students</i></li>
+            <li><i>Professors</i></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Exam Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h5 class="card-title">Total Courses</h5>
+                        <p class="card-text">50</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                            <h5 class="card-title">Total Students</h5>
+                            <p class="card-text">500</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h5>TOtal Professor</h5>
+                        <p>90</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Course Enrollment</h5>
+                        <canvas id="courseEnrollmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Students Distribution</h5>
+                        <canvas id="studentsDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table">
+            <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Course name</th>
+                    <th>Professor</th>
+                    <th>Students Enrolled</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Comp Sci</td>
+                    <td>Dr. Smith</td>
+                    <td>200</td>
+                    <td><button class="btn btn-primary">view details</button></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Computer Science</td>
+                    <td>Dr. Smith</td>
+                    <td>200</td>
+                    <td><button class="btn btn-primary">View Details</button></td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Computer Science</td>
+                    <td>Dr. Smith</td>
+                    <td>200</td>
+                    <td><button class="btn btn-primary">View Details</button></td>
+                  </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script>
+    var ctx=document.getElementById('courseEnrollementChart').getContect('2d');
+    var courseEnrollementChart= new Chart(ctx,{
+        type:'bar',
+        data:{
+            Lables:['Computer Sci','Mathematics','Physics','Biology','Chemistry'],
+            datasets:[{
+                label:'Enrollement',
+                data:[200,180,150,120,100],
+                backgroundColor:[
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)'
+    
+                ],
+                borderColor:[
+                'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)'
+                ],
+                borderWidth:1
+            }]
+        },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero:true
+                    }
+                }
+            }
+        
+    });
+    var ctx2=document.getElementById('studentsDistributionChart').getContext('2d');
+    var StudentsDistributionChart=new chart(ctx2,{
+        type:'pie',
+        data:{
+            labels:['Freshmen','Sophomores','Juniors','Seniors'],
+            dataset:[
+                {
+                    label:'Distribution',
+                    data:[250,300,250],
+                    backgroundColor:[
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)'
+                    ],
+                    borderColor:[
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)',
+                    'rgba(255,99,132,0.2)'
+                    ],
+                    borderWidth:1
+
+
+                }
+            ]
+        },
+        options:{
+            scales:{
+                y:{
+                    beginAtZero:true
+                }
+            }
+        }
+    });
+  </script>
+</body>
+</html>
